@@ -7,7 +7,10 @@ const DeckBuilder = () => {
     
     return(
         <div>
-            <h1>Pls</h1>
+            <input type = "text"
+            onChange = {(evt) => {}}>
+                
+            </input>
 
         </div>
     )
