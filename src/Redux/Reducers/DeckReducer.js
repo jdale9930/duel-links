@@ -6,7 +6,7 @@ export default function DeckReducer(state = initialState, action){
         case ADD_TO_DECK:
             return([...state, action.card])
         case REMOVE_FROM_DECK:
-            return state.filter((v) => v != action.id)
+            return state.filter((v) => v !== action.id)
         default:
             return state;
     }
