@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import {connect} from "react-redux";
-import {addToDeck, removeFromDeck, setSearch} from "../Redux/Actions";
+import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
 import CardDisplay from "./cardDisplay"
 import "./deckBuilder.css"
 import InfoDisplay from "./infoDisplay"
@@ -78,6 +78,7 @@ const DeckBuilder = (props) => {
 
     return(
         <div>
+            <div class = "searchBox">
             <div>
             <input type = "text" value = {props.search}
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
@@ -96,7 +97,7 @@ const DeckBuilder = (props) => {
 
                 {mst === "Spell Card" && 
                     <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
-                        <option value = "">Spell Type</option>
+                        <option value = "">Card Type</option>
                         <option value = "Normal">Normal</option>
                         <option value = "Field">Field</option>
                         <option value = "Equip">Equip</option>
@@ -108,7 +109,7 @@ const DeckBuilder = (props) => {
 
                 {mst === "Trap Card" && 
                     <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
-                        <option value = "">Trap Type</option>
+                        <option value = "">Card Type</option>
                         <option value = "Normal">Normal</option>
                         <option value = "Continuous">Continuous</option>
                         <option value = "Counter">Counter</option>
@@ -117,7 +118,7 @@ const DeckBuilder = (props) => {
 
                 {mst === "Normal Monster,Effect Monster" && 
                     <select value = {type} onChange = {(evt) => {setType(evt.target.value)}}>
-                        <option value = ""></option>
+                        <option value = "">Card Type</option>
                         <option value = "Normal Monster">Normal</option>
                         <option value = "Effect Monster">Effect</option>
                         <option value = "Flip Effect Monster">Flip</option>
@@ -129,6 +130,11 @@ const DeckBuilder = (props) => {
                         <option value = "Fusion Monster">Fusion</option>
                         <option value = "Synchro Monster">Synchro</option>
                         <option value = "XYZ Monster">XYZ</option>
+                    </select>
+                }
+                {mst === "" &&
+                    <select disabled>
+                        <option>Card Type</option>
                     </select>
                 }
             </div>
@@ -181,7 +187,7 @@ const DeckBuilder = (props) => {
                 <option value = "Fiend">Fiend</option>
                 <option value = "Fish">Fish</option>
                 <option value = "Insect">Insect</option>
-                <option value = "Machine">Insect</option>
+                <option value = "Machine">Machine</option>
                 <option value = "Plant">Plant</option>
                 <option value = "Psychic">Psychic</option>
                 <option value = "Pyro">Pyro</option>
@@ -224,7 +230,18 @@ const DeckBuilder = (props) => {
                     getCards(props.search, attribute, level, race, type)
                 }}
             >Search</button>
-            <button></button>
+            <button
+            onClick = {() =>{
+                props.clearSearch()
+                setAttribute("")
+                setLevel("")
+                setRace("")
+                setType("")
+                setMst("")
+                }
+            }
+            >Clear Search</button>
+            </div>
 
             <div className = "searchContainer">
             {error.length > 0 && <h1>{error}</h1>}
@@ -268,5 +285,6 @@ const mapDispatchToProps ={
     addToDeck,
     removeFromDeck,
     setSearch,
+    clearSearch,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DeckBuilder);
