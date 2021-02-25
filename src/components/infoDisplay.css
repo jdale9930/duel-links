@@ -2,6 +2,41 @@
 {
     display: flex;
     flex-flow: column wrap;
-    /* position:absolute;
-    left: 5px; */
+    position: fixed;
+    right: 5%;
+    top: 50px;
+    border: 2px solid black;
+    width: 400px;
+}
+
+.infoImage
+{
+    margin: auto;
+    height: 320px;
+    width: 224px;
+}
+
+.infoText{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.textRow{
+    width: 160px;
+    text-align: left;
+    padding-left: 15px;
+    border: 1px solid black
+}
+
+.cardTitle{
+    font-size: 25px;
+}
+.effectText{
+    margin-top: 3px;
+    border: 1px solid black;
+    text-align: left;
+    font-size: 14px;
+    min-height: 200px;
+    padding: 2px;
 }

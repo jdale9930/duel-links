@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {addToDeck, removeFromDeck, setSearch} from "../Redux/Actions";
 import CardDisplay from "./cardDisplay"
 import "./deckBuilder.css"
+import InfoDisplay from "./infoDisplay"
 
 const DeckBuilder = (props) => {
 
@@ -13,6 +14,20 @@ const DeckBuilder = (props) => {
     const [race, setRace] = useState("")
     const [type, setType] = useState("")
     const [mst, setMst] = useState("")
+    const [cardInfo, setCardInfo] = useState({
+        id: "", 
+        name: "", 
+        type: "", 
+        effect: "",
+        atk: "", 
+        def: "",
+        level: "",
+        race: "",
+        attribute: "",
+        archetype: "",
+        image_big: "",
+        image_small: "",
+    })
 
     async function getCards(search, attribute, level, race, type,)
     {
@@ -37,7 +52,6 @@ const DeckBuilder = (props) => {
             let json = await response.json();
             console.log(json)
             let searchResults = json.data.map((v) => {
-
                 return {
                     id: v.id, 
                     name: v.name, 
@@ -69,7 +83,6 @@ const DeckBuilder = (props) => {
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
             </input>
             </div>
-            <select></select>
             <div>
             <select value = {mst} onChange = {(evt)=> {
                 setType(evt.target.value)
@@ -79,10 +92,8 @@ const DeckBuilder = (props) => {
                 <option value = "Spell Card">Spell</option>
                 <option value = "Trap Card">Trap</option>
                 <option value = "Normal Monster,Effect Monster">Monster</option>
-
             </select>
 
-            
                 {mst === "Spell Card" && 
                     <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
                         <option value = "">Spell Type</option>
@@ -92,10 +103,9 @@ const DeckBuilder = (props) => {
                         <option value = "Continuous">Continuous</option>
                         <option value = "Quick-Play">Quick-Play</option>
                         <option value = "Ritual">Ritual</option>
-
-
                     </select>
                 }
+
                 {mst === "Trap Card" && 
                     <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
                         <option value = "">Trap Type</option>
@@ -104,6 +114,7 @@ const DeckBuilder = (props) => {
                         <option value = "Counter">Counter</option>
                     </select>
                 }
+
                 {mst === "Normal Monster,Effect Monster" && 
                     <select value = {type} onChange = {(evt) => {setType(evt.target.value)}}>
                         <option value = ""></option>
@@ -158,7 +169,32 @@ const DeckBuilder = (props) => {
             </div>
             <div>
             <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
-                <option value = "">Type</option>
+                <option value = "">Monster Type</option>
+                <option value = "Aqua">Aqua</option>
+                <option value = "Beast">Beast</option>
+                <option value = "Beast-Warrior">Beast-Warrior</option>
+                <option value = "Cyberse">Cyberse</option>
+                <option value = "Dinosaur">Dinosaur</option>
+                <option value = "Divine-Beast">Divine-Beast</option>
+                <option value = "Dragon">Dragon</option>
+                <option value = "Fairy">Fairy</option>
+                <option value = "Fiend">Fiend</option>
+                <option value = "Fish">Fish</option>
+                <option value = "Insect">Insect</option>
+                <option value = "Machine">Insect</option>
+                <option value = "Plant">Plant</option>
+                <option value = "Psychic">Psychic</option>
+                <option value = "Pyro">Pyro</option>
+                <option value = "Reptile">Reptile</option>
+                <option value = "Rock">Rock</option>
+                <option value = "Sea Serpent">Sea Serpent</option>
+                <option value = "Spellcaster">Spellcaster</option>
+                <option value = "Thunder">Thunder</option>
+                <option value = "Warrior">Warrior</option>
+                <option value = "Winged-Beast">Winged-Beast</option>
+
+
+
             </select>
             </div>
             </>
@@ -194,7 +230,26 @@ const DeckBuilder = (props) => {
             {error.length > 0 && <h1>{error}</h1>}
             {error.length === 0 && 
             cardSearch.map((v) => 
-            <CardDisplay key = {v.id} image_big = {v.image_big} image_small = {v.image_small}name = {v.name}/>)}
+            <CardDisplay 
+            key = {v.id} 
+            id = {v.id} 
+            name = {v.name}
+            type = {v.type}
+            effect = {v.effect}
+            atk = {v.atk} 
+            def = {v.def}
+            level = {v.level}
+            race = {v.race}
+            attribute = {v.attribute}
+            archetype = {v.archetype}
+            image_big = {v.image_big}
+            image_small = {v.image_small}
+            cardInfo = {cardInfo}
+            setCardInfo = {setCardInfo}
+            />)}
+            </div>
+            <div>
+                <InfoDisplay info = {cardInfo}></InfoDisplay>
             </div>
         </div>
     )
