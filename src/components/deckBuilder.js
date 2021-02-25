@@ -28,7 +28,7 @@ const DeckBuilder = (props) => {
         attribute !== "" && (attributeURL = `&attribute=${attribute}`)
         level !== "" && (levelURL = `&level=${level}`)
         race !== "" && (raceURL = `&race=${race}`)
-        type !== "" && (searchURL = `&type=${type}`)
+        type !== "" && (typeURL = `&type=${type}`)
         const url = `https://db.ygoprodeck.com/api/v7/cardinfo.php?format=duel%20links${searchURL}${attributeURL}${levelURL}${raceURL}${typeURL}`
         console.log(url)
         try{
@@ -65,7 +65,7 @@ const DeckBuilder = (props) => {
     return(
         <div>
             <div>
-            <input type = "text"
+            <input type = "text" value = {props.search}
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
             </input>
             </div>
@@ -185,12 +185,11 @@ const DeckBuilder = (props) => {
             
             }
             <button onClick = {() => {
-                console.log(mst)
-                console.log(type)
                     getCards(props.search, attribute, level, race, type)
                 }}
-            
             >Search</button>
+            <button></button>
+
             <div className = "searchContainer">
             {error.length > 0 && <h1>{error}</h1>}
             {error.length === 0 && 

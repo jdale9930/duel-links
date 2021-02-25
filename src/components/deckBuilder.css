@@ -2,4 +2,5 @@
     display: flex;
     flex-flow: row wrap;
     border: 2px solid black;
+    width: 896px;
 }

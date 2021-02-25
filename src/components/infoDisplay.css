@@ -1,0 +1,7 @@
+.infoContainer
+{
+    display: flex;
+    flex-flow: column wrap;
+    /* position:absolute;
+    left: 5px; */
+}

@@ -2,3 +2,6 @@
     height: 160px;
     width: 112px;
 }
+.card:hover{
+    transform: scale(1.2);
+}
