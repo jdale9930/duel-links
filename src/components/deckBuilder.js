@@ -12,6 +12,7 @@ const DeckBuilder = (props) => {
     const [level, setLevel] = useState("")
     const [race, setRace] = useState("")
     const [type, setType] = useState("")
+    const [mst, setMst] = useState("")
 
     async function getCards(search, attribute, level, race, type,)
     {
@@ -21,12 +22,15 @@ const DeckBuilder = (props) => {
         let raceURL = ""
         let typeURL = ""
 
+        console.log(mst)
+        console.log(type)
         search !== "" && (searchURL = `&fname=${search}`)
         attribute !== "" && (attributeURL = `&attribute=${attribute}`)
         level !== "" && (levelURL = `&level=${level}`)
         race !== "" && (raceURL = `&race=${race}`)
         type !== "" && (searchURL = `&type=${type}`)
         const url = `https://db.ygoprodeck.com/api/v7/cardinfo.php?format=duel%20links${searchURL}${attributeURL}${levelURL}${raceURL}${typeURL}`
+        console.log(url)
         try{
             setError("")
             let response = await fetch(url);
@@ -60,22 +64,131 @@ const DeckBuilder = (props) => {
 
     return(
         <div>
+            <div>
             <input type = "text"
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
             </input>
-            <select value = {type} onChange = {(evt) => {setType(evt.target.value)}}>
-                
-            </select>
-            <select value = {attribute} onChange = {(evt) => {setAttribute(evt.target.value)}}>
+            </div>
+            <select></select>
+            <div>
+            <select value = {mst} onChange = {(evt)=> {
+                setType(evt.target.value)
+                setMst(evt.target.value)
+                setRace("")}}>
+                <option value = "">Card</option>
+                <option value = "Spell Card">Spell</option>
+                <option value = "Trap Card">Trap</option>
+                <option value = "Normal Monster,Effect Monster">Monster</option>
 
             </select>
+
+            
+                {mst === "Spell Card" && 
+                    <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
+                        <option value = "">Spell Type</option>
+                        <option value = "Normal">Normal</option>
+                        <option value = "Field">Field</option>
+                        <option value = "Equip">Equip</option>
+                        <option value = "Continuous">Continuous</option>
+                        <option value = "Quick-Play">Quick-Play</option>
+                        <option value = "Ritual">Ritual</option>
+
+
+                    </select>
+                }
+                {mst === "Trap Card" && 
+                    <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
+                        <option value = "">Trap Type</option>
+                        <option value = "Normal">Normal</option>
+                        <option value = "Continuous">Continuous</option>
+                        <option value = "Counter">Counter</option>
+                    </select>
+                }
+                {mst === "Normal Monster,Effect Monster" && 
+                    <select value = {type} onChange = {(evt) => {setType(evt.target.value)}}>
+                        <option value = ""></option>
+                        <option value = "Normal Monster">Normal</option>
+                        <option value = "Effect Monster">Effect</option>
+                        <option value = "Flip Effect Monster">Flip</option>
+                        <option value = "Tuner Monster,Normal Tuner Monster">Tuner</option>
+                        <option value = "Union Effect Monster">Union</option>
+                        <option value = "Spirit Monster">Spirit</option>
+                        <option value = "Toon Monster">Toon</option>
+                        <option value = "Ritual Monster,Ritual Effect Monster">Ritual</option>
+                        <option value = "Fusion Monster">Fusion</option>
+                        <option value = "Synchro Monster">Synchro</option>
+                        <option value = "XYZ Monster">XYZ</option>
+                    </select>
+                }
+            </div>
+
+            
+            {mst !== "Spell Card" &&
+            mst !== "Trap Card" ?
+            <>
+            <div>
+            <select value = {attribute} onChange = {(evt) => {setAttribute(evt.target.value)}}>
+                <option value = "">Attribute</option>
+                <option value ="EARTH">Earth</option>
+                <option value ="FIRE">Fire</option>
+                <option value ="WATER">Water</option>
+                <option value ="WIND">Wind</option>
+                <option value ="LIGHT">Light</option>
+                <option value ="DARK">Dark</option>
+                <option value ="DIVINE">Divine</option>
+            </select>
+            </div>
+
+            <div>
             <select value = {level} onChange = {(evt) => {setLevel(evt.target.value)}}>
-                
+                <option value = "">Level/Rank</option>
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+                <option value = "5">5</option>
+                <option value = "6">6</option>
+                <option value = "7">7</option>
+                <option value = "8">8</option>
+                <option value = "9">9</option>
+                <option value = "10">10</option>
+                <option value = "11">11</option>
+                <option value = "12">12</option>
             </select>
+            </div>
+            <div>
             <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
-                
+                <option value = "">Type</option>
             </select>
-            <button onClick = {() => {getCards(props.search, attribute, level, race, type)}}
+            </div>
+            </>
+             : 
+            <>
+            {attribute !== "" && setAttribute("")}
+            {level !== "" && setLevel("")}
+                <div>
+                    <select disabled>
+                        <option>Attribute</option>
+                    </select>
+                </div>
+                <div>
+                    <select disabled>
+                        <option>Level/Rank</option>
+                    </select>
+                </div>
+                <div>
+                    <select disabled>
+                        <option>Type</option>
+                    </select>
+                </div>
+            </>
+            
+            }
+            <button onClick = {() => {
+                console.log(mst)
+                console.log(type)
+                    getCards(props.search, attribute, level, race, type)
+                }}
             
             >Search</button>
             <div className = "searchContainer">
