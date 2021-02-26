@@ -1,12 +1,27 @@
 import React from "react"
 import "./infoDisplay.css"
+import {connect} from "react-redux";
+import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
 
 const InfoDisplay = (props) =>
 {
-    console.log("pls")
     return(
         <div className = "infoContainer">
-            <img className = "infoImage" alt = "ahhh" src = {props.info.image_big}></img>
+            {props.info.image_big.length > 0 ?
+            <>
+            <button
+            onClick = {() => {props.addToDeck(props.info)}}>
+            Add To Deck</button>
+                        <button onClick = {() => console.log(props.deck)}>log</button>
+
+            <img className = "infoImage" alt = {props.info.name} src = {props.info.image_big}></img>
+            </>
+            :
+            <>
+            <button disabled>Add to Deck</button>
+            <img className = "infoImage" alt = ""></img>
+            </>
+            }
             <div className = "cardTitle">{props.info.name}</div>
             {props.info.type !== "Spell Card" &&
             props.info.type !== "Trap Card" ?
@@ -36,4 +51,19 @@ const InfoDisplay = (props) =>
     )
 }
 
-export default InfoDisplay
+function mapStateToProps(state){
+    return{
+        deck: state.deck,
+        card: state.deck.card,
+        cardId: state.deck.id,
+        search: state.search,
+    }
+}
+
+const mapDispatchToProps ={
+    addToDeck,
+    removeFromDeck,
+    setSearch,
+    clearSearch,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(InfoDisplay);

@@ -78,7 +78,7 @@ const DeckBuilder = (props) => {
 
     return(
         <div>
-            <div class = "searchBox">
+            <div className = "searchBox">
             <div>
             <input type = "text" value = {props.search}
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
@@ -128,7 +128,7 @@ const DeckBuilder = (props) => {
                         <option value = "Toon Monster">Toon</option>
                         <option value = "Ritual Monster,Ritual Effect Monster">Ritual</option>
                         <option value = "Fusion Monster">Fusion</option>
-                        <option value = "Synchro Monster">Synchro</option>
+                        <option value = "Synchro Monster,Synchro Tuner Monster">Synchro</option>
                         <option value = "XYZ Monster">XYZ</option>
                     </select>
                 }
@@ -266,7 +266,7 @@ const DeckBuilder = (props) => {
             />)}
             </div>
             <div>
-                <InfoDisplay info = {cardInfo}></InfoDisplay>
+                <InfoDisplay info = {cardInfo} cardInfo = {cardInfo} setCardInfo = {setCardInfo}></InfoDisplay>
             </div>
         </div>
     )
