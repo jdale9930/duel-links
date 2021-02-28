@@ -79,12 +79,10 @@ const DeckBuilder = (props) => {
     return(
         <div>
             <div className = "searchBox">
-            <div>
-            <input type = "text" value = {props.search}
+            <div className = "columnBox">
+            <input placeholder = "Card Name..."type = "text" value = {props.search}
             onChange = {(evt) => {props.setSearch(evt.target.value)}}>
             </input>
-            </div>
-            <div>
             <select value = {mst} onChange = {(evt)=> {
                 setType(evt.target.value)
                 setMst(evt.target.value)
@@ -139,12 +137,12 @@ const DeckBuilder = (props) => {
                 }
             </div>
 
-            
+            <div className = "columnBox">
             {mst !== "Spell Card" &&
             mst !== "Trap Card" ?
             <>
             <div>
-            <select value = {attribute} onChange = {(evt) => {setAttribute(evt.target.value)}}>
+            <select className = "input" value = {attribute} onChange = {(evt) => {setAttribute(evt.target.value)}}>
                 <option value = "">Attribute</option>
                 <option value ="EARTH">Earth</option>
                 <option value ="FIRE">Fire</option>
@@ -157,7 +155,7 @@ const DeckBuilder = (props) => {
             </div>
 
             <div>
-            <select value = {level} onChange = {(evt) => {setLevel(evt.target.value)}}>
+            <select className = "input" value = {level} onChange = {(evt) => {setLevel(evt.target.value)}}>
                 <option value = "">Level/Rank</option>
                 <option value = "1">1</option>
                 <option value = "2">2</option>
@@ -174,7 +172,7 @@ const DeckBuilder = (props) => {
             </select>
             </div>
             <div>
-            <select value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
+            <select className = "input" value = {race} onChange = {(evt) => {setRace(evt.target.value)}}>
                 <option value = "">Monster Type</option>
                 <option value = "Aqua">Aqua</option>
                 <option value = "Beast">Beast</option>
@@ -198,9 +196,6 @@ const DeckBuilder = (props) => {
                 <option value = "Thunder">Thunder</option>
                 <option value = "Warrior">Warrior</option>
                 <option value = "Winged-Beast">Winged-Beast</option>
-
-
-
             </select>
             </div>
             </>
@@ -209,29 +204,30 @@ const DeckBuilder = (props) => {
             {attribute !== "" && setAttribute("")}
             {level !== "" && setLevel("")}
                 <div>
-                    <select disabled>
+                    <select className = "input" disabled>
                         <option>Attribute</option>
                     </select>
                 </div>
                 <div>
-                    <select disabled>
+                    <select className = "input" disabled>
                         <option>Level/Rank</option>
                     </select>
                 </div>
                 <div>
-                    <select disabled>
+                    <select className = "input" disabled>
                         <option>Type</option>
                     </select>
                 </div>
             </>
             
             }
-            <button onClick = {() => {
+            </div>
+            <div className = "columnBox">
+            <button className = "searchButton" onClick = {() => {
                     getCards(props.search, attribute, level, race, type)
                 }}
             >Search</button>
-            <button
-            onClick = {() =>{
+            <button className = "searchButton" onClick = {() => {
                 props.clearSearch()
                 setAttribute("")
                 setLevel("")
@@ -241,6 +237,7 @@ const DeckBuilder = (props) => {
                 }
             }
             >Clear Search</button>
+            </div>
             </div>
 
             <div className = "searchContainer">

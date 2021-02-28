@@ -3,41 +3,66 @@
     display: flex;
     flex-flow: column wrap;
     position: fixed;
-    right: 5%;
-    top: 50px;
+    right: 5px;;
+    top: 20px;
     border: 2px solid black;
     width: 400px;
+    background-color: rgba(107, 107, 219, 0.541);
+    padding: 3px;
 }
 
 .infoImage
 {
-    margin: auto;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: auto;
     height: 320px;
     width: 224px;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
+
 }
 
 .infoText{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    
 }
 
 .textRow{
     width: 160px;
     text-align: left;
     padding-left: 15px;
-    border: 1px solid black
+    border: 1px solid black;
+    background: azure;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
 }
 
 .cardTitle{
     font-size: 25px;
     text-align: center;
+    background-color: azure;
+    margin: 5px;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
 }
 .effectText{
-    margin-top: 3px;
+    margin: 3px;
     border: 1px solid black;
     text-align: left;
     font-size: 14px;
     min-height: 200px;
     padding: 2px;
+    background: azure;
+    box-shadow: inset 0px 0px 20px rgb(115, 124, 124),
+                5px 5px 3px navy;
+}
+
+button{
+    width: 300px;
+    margin: auto;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
 }

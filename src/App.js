@@ -11,9 +11,9 @@ function App() {
       <BrowserRouter>
         <main>
         <nav>
-          <NavLink to ="/deckBuilder">Deck Builder</NavLink>
-          <NavLink to ="/duelSim">Duel Simulator</NavLink>
-          <NavLink to ="/deck">Deck</NavLink>
+          <NavLink className = "link" activeClassName = "activeLink" to ="/deckBuilder">Deck Builder</NavLink>
+          <NavLink className = "link" activeClassName = "activeLink" to ="/duelSim">Duel Simulator</NavLink>
+          <NavLink className = "link" activeClassName = "activeLink" to ="/deck">Deck</NavLink>
 
         </nav>
           <Switch>
