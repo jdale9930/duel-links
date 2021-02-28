@@ -20,10 +20,9 @@ const Deck = (props) => {
         image_small: "",
     })
     return(
-        <div>
-            <button onClick = {()=> props.addToDeck(1)}>add to deck</button>
-            <button onClick = {() => console.log(props.deck)}>log</button>
-            {props.deck.map((v) =>
+        <>
+        <div className = "searchContainer">
+            {props.mainDeck.map((v) =>
             <CardDisplay
             key = {v.id} 
             id = {v.id} 
@@ -42,9 +41,31 @@ const Deck = (props) => {
             setCardInfo = {setCardInfo}
             ></CardDisplay>
             )}
-            <InfoDisplay info = {cardInfo} cardInfo = {cardInfo} setCardInfo = {setCardInfo}></InfoDisplay>
-
             </div>
+            <div className = "searchContainer">
+            {props.extraDeck.map((v) =>
+            <CardDisplay
+            key = {v.id} 
+            id = {v.id} 
+            name = {v.name}
+            type = {v.type}
+            effect = {v.effect}
+            atk = {v.atk} 
+            def = {v.def}
+            level = {v.level}
+            race = {v.race}
+            attribute = {v.attribute}
+            archetype = {v.archetype}
+            image_big = {v.image_big}
+            image_small = {v.image_small}
+            cardInfo = {cardInfo}
+            setCardInfo = {setCardInfo}
+            ></CardDisplay>
+            )}
+            </div>
+            <InfoDisplay loc = "deck"info = {cardInfo} cardInfo = {cardInfo} setCardInfo = {setCardInfo}></InfoDisplay>
+
+            </>
     )
 }
 
@@ -54,6 +75,8 @@ function mapStateToProps(state){
         card: state.deck.card,
         cardId: state.deck.id,
         search: state.search,
+        mainDeck: state.deck.mainDeck,
+        extraDeck: state.deck.extraDeck,
     }
 }
 

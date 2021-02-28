@@ -5,6 +5,6 @@ export function addToDeck(card){
     return{type: ADD_TO_DECK, card: card}
 }
 
-export function removeFromDeck(id){
-    return{type: REMOVE_FROM_DECK, id: id}
+export function removeFromDeck(card){
+    return{type: REMOVE_FROM_DECK, card: card}
 }

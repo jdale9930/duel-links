@@ -1,4 +1,4 @@
-import React from "react"
+import {React} from "react"
 import "./infoDisplay.css"
 import {connect} from "react-redux";
 import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
@@ -9,11 +9,11 @@ const InfoDisplay = (props) =>
         <div className = "infoContainer">
             {props.info.image_big.length > 0 ?
             <>
-            <button
-            onClick = {() => {props.addToDeck(props.info)}}>
+           
+            <button onClick = {() => {props.addToDeck(props.info)}}>
             Add To Deck</button>
-                        <button onClick = {() => console.log(props.deck)}>log</button>
-
+            <button onClick = {() => {props.removeFromDeck(props.info)}}>
+            Remove From Deck</button>
             <img className = "infoImage" alt = {props.info.name} src = {props.info.image_big}></img>
             </>
             :
@@ -57,6 +57,8 @@ function mapStateToProps(state){
         card: state.deck.card,
         cardId: state.deck.id,
         search: state.search,
+        mainDeck: state.deck.mainDeck,
+        extraDeck: state.deck.extraDeck
     }
 }
 

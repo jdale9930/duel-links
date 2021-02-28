@@ -37,15 +37,15 @@ const DeckBuilder = (props) => {
         let raceURL = ""
         let typeURL = ""
 
-        console.log(mst)
-        console.log(type)
+        // console.log(mst)
+        // console.log(type)
         search !== "" && (searchURL = `&fname=${search}`)
         attribute !== "" && (attributeURL = `&attribute=${attribute}`)
         level !== "" && (levelURL = `&level=${level}`)
         race !== "" && (raceURL = `&race=${race}`)
         type !== "" && (typeURL = `&type=${type}`)
         const url = `https://db.ygoprodeck.com/api/v7/cardinfo.php?format=duel%20links${searchURL}${attributeURL}${levelURL}${raceURL}${typeURL}`
-        console.log(url)
+        //console.log(url)
         try{
             setError("")
             let response = await fetch(url);
@@ -67,7 +67,7 @@ const DeckBuilder = (props) => {
                     image_small: v.card_images[0].image_url_small,
                 }
             })
-            console.log(searchResults)
+            //console.log(searchResults)
             setCardSearch(searchResults)
         }
          catch(evt){
@@ -266,7 +266,7 @@ const DeckBuilder = (props) => {
             />)}
             </div>
             <div>
-                <InfoDisplay info = {cardInfo} cardInfo = {cardInfo} setCardInfo = {setCardInfo}></InfoDisplay>
+                <InfoDisplay loc = "deckBuilder"info = {cardInfo} cardInfo = {cardInfo} setCardInfo = {setCardInfo}></InfoDisplay>
             </div>
         </div>
     )
