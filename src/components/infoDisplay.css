@@ -9,6 +9,8 @@
     width: 400px;
     background-color: rgba(107, 107, 219, 0.541);
     padding: 3px;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
 }
 
 .infoImage

@@ -21,7 +21,8 @@ export default function DeckReducer(state = initialState, action){
             if(
                 action.card.type === "Fusion Monster" ||
                 action.card.type === "Synchro Monster" ||
-                action.card.type === "Synchro Monster,Synchro Tuner Monster" ||
+                action.card.type === "Synchro Tuner Monster" ||
+                action.card.type === "Synchro Monster" ||
                 action.card.type === "XYZ Monster"
             )
             {
@@ -29,7 +30,7 @@ export default function DeckReducer(state = initialState, action){
                 {
                     if(counter < 3)
                     {
-                        //console.log(counter)
+                        console.log(state.extraDeck)
                     return({...state, extraDeck: [...state.extraDeck, action.card]})
                     }
                     else return state
@@ -53,7 +54,8 @@ export default function DeckReducer(state = initialState, action){
             if(
                 action.card.type === "Fusion Monster" ||
                 action.card.type === "Synchro Monster" ||
-                action.card.type === "Synchro Monster,Synchro Tuner Monster" ||
+                action.card.type === "Synchro Tuner Monster" ||
+                action.card.type === "Synchro Monster" ||
                 action.card.type === "XYZ Monster"
             )
             {

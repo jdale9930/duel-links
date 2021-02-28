@@ -1,0 +1,10 @@
+.extraDeck{
+        display: flex;
+        flex-flow: row wrap;
+        border: 2px solid black;
+        width: 50%;
+        min-height: 170px;
+        background-color: rgba(107, 107, 219, 0.541);
+        margin-left: 20px;
+        padding: 5px;
+}

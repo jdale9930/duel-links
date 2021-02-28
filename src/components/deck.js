@@ -3,6 +3,7 @@ import CardDisplay from "./cardDisplay"
 import InfoDisplay from "./infoDisplay"
 import {connect} from "react-redux";
 import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
+import "./deck.css"
 
 const Deck = (props) => {
     const [cardInfo, setCardInfo] = useState({
@@ -42,7 +43,7 @@ const Deck = (props) => {
             ></CardDisplay>
             )}
             </div>
-            <div className = "searchContainer">
+            <div className = "extraDeck">
             {props.extraDeck.map((v) =>
             <CardDisplay
             key = {v.id} 

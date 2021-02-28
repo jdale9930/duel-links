@@ -19,6 +19,7 @@ const InfoDisplay = (props) =>
             :
             <>
             <button disabled>Add to Deck</button>
+            <button disabled>Remover From Deck</button>
             <img className = "infoImage" alt = ""></img>
             </>
             }

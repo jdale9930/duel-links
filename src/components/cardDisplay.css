@@ -1,6 +1,7 @@
 .card{
     height: 160px;
     width: 112px;
+    margin: 1px;
 }
 .card:hover{
     transform: scale(1.2);
