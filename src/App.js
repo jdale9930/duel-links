@@ -10,6 +10,7 @@ function App() {
     <Provider store = {store}>
       <BrowserRouter>
         <main>
+          <div className = "siteTitle">Duel Links Deck Builder</div>
         <nav>
           <NavLink className = "link" activeClassName = "activeLink" to ="/deckBuilder">Deck Builder</NavLink>
           <NavLink className = "link" activeClassName = "activeLink" to ="/duelSim">Duel Simulator</NavLink>
