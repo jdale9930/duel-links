@@ -1,6 +1,7 @@
 import DeckBuilder from "./components/deckBuilder"
 import DuelSim from "./components/duelSim"
 import Deck from "./components/deck"
+import Login from "./components/login"
 import './App.css';
 import store from "./Redux/store"
 import {Provider} from "react-redux"
@@ -12,12 +13,14 @@ function App() {
         <main>
           <div className = "siteTitle">Duel Links Deck Builder</div>
         <nav>
+        <NavLink className = "link" activeClassName = "activeLink" to ="/login">Login</NavLink>
           <NavLink className = "link" activeClassName = "activeLink" to ="/deckBuilder">Deck Builder</NavLink>
           <NavLink className = "link" activeClassName = "activeLink" to ="/duelSim">Duel Simulator</NavLink>
           <NavLink className = "link" activeClassName = "activeLink" to ="/deck">Deck</NavLink>
 
         </nav>
           <Switch>
+          <Route path = "/login" component = {Login}></Route>
           <Route path = "/deckBuilder" component = {DeckBuilder}></Route>
           <Route path = "/DuelSim" component = {DuelSim}></Route>
           <Route path = "/deck" component = {Deck}></Route>

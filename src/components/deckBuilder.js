@@ -196,6 +196,7 @@ const DeckBuilder = (props) => {
                 <option value = "Thunder">Thunder</option>
                 <option value = "Warrior">Warrior</option>
                 <option value = "Winged-Beast">Winged-Beast</option>
+                <option value = "Zombie">Zombie</option>
             </select>
             </div>
             </>
