@@ -5,12 +5,14 @@ import {setCurrentUser, setCurrentId} from "../Redux/Actions";
 const Login = () =>{
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     function signup(data){
         
         try{
-            fetch(`http://localhost:1234/users/signup`, {
+            fetch(`/users/signup`, {
                 method: `POST`,
+                //mode: "no-cors",
                 headers: {
                     "Content-Type":"application/json"},
                 body: JSON.stringify({
@@ -21,7 +23,8 @@ const Login = () =>{
             .then((res) => console.log(res))
         }
          catch(evt){
-             //setError("Something went wrong!")
+             setError("Something went wrong!")
+             console.log(error)
          }
     }
 
