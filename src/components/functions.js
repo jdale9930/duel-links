@@ -73,5 +73,8 @@ async function deleteDeck(deckId){
     {}
 }
 
+async function userLogout(){
+    
+}
 
 module.exports = {addToDeck, removeFromDeck, getCardsInDeck, getUserDecks, }

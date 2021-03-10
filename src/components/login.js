@@ -1,11 +1,13 @@
 import {React, useState} from "react"
 import {connect} from "react-redux"
 import {setCurrentUser, setCurrentId} from "../Redux/Actions";
+import {useHistory} from "react-router-dom"
 //import axios from "axios"
 const Login = (props) =>{
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
+    const history = useHistory()
 
     async function signup(data){
         setError("")
@@ -26,6 +28,7 @@ const Login = (props) =>{
             else{
                 props.setCurrentUser(json.data.username)
                 props.setCurrentId(json.data.id)
+                history.push("/deckBuilder")
             }
         }
          catch(err){
@@ -58,6 +61,7 @@ const Login = (props) =>{
                 props.setCurrentUser(json.data.username)
                 console.log(props.username)
                 props.setCurrentId(json.data.id)
+                history.push("/deckBuilder")
             }
         }
          catch(err){
@@ -98,4 +102,5 @@ const mapDispatchToProps = {
     setCurrentUser,
     setCurrentId
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

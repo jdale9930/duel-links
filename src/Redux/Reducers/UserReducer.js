@@ -14,7 +14,7 @@ export default function UserReducer(state = initialState, action){
         case SET_CURRENT_ID:
             return({...state, id: action.id})
         case CLEAR_USER:
-            return initialState
+            return({...state, name: "", id: 0})
         default:
             return state;
     }
