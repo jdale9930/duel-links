@@ -1,5 +1,6 @@
 import {SET_CURRENT_NAME} from "../Actions"
 import {SET_CURRENT_ID} from "../Actions"
+import {CLEAR_USER} from "../Actions"
 
 const initialState = 
 {
@@ -12,6 +13,8 @@ export default function UserReducer(state = initialState, action){
             return({...state, name: action.name})
         case SET_CURRENT_ID:
             return({...state, id: action.id})
+        case CLEAR_USER:
+            return initialState
         default:
             return state;
     }

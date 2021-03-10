@@ -5,21 +5,25 @@ import Login from "./components/login"
 import './App.css';
 import store from "./Redux/store"
 import {Provider} from "react-redux"
+import {useSelectors, useActionCreators} from "use-redux"
+import {usernameSelector, userSelector} from "./Redux/Selectors"
 import {Switch, Route, BrowserRouter, Redirect, NavLink} from "react-router-dom"
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import{clearUser, setCurrentUser} from "./Redux/Actions"
 import axios from "axios"
 function App() {
-  const [logout, login] = useActionCreators(clearUser, setUser)
-
+  const [clearUserFromState, setUserInState] = useActionCreators(clearUser, setCurrentUser)
+  const [username, user] = useSelectors(usernameSelector, userSelector);
+  
   useEffect(async () =>{
     try{
     const json = await axios.get("/users/authenticate")
     if(json.data.success){
-      login(json.data.data.username)
+      setUserInState(json.data.data.username)
     }
   }
   catch(err){}
-  })
+  }, [])
   return (
     
     <Provider store = {store}>

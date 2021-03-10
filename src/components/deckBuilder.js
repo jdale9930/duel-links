@@ -240,6 +240,7 @@ const DeckBuilder = (props) => {
             >Clear Search</button>
             </div>
             </div>
+            <select></select> 
 
             <div className = "searchContainer">
             {error.length > 0 && <h1>{error}</h1>}
