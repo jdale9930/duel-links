@@ -6,8 +6,22 @@ import './App.css';
 import store from "./Redux/store"
 import {Provider} from "react-redux"
 import {Switch, Route, BrowserRouter, Redirect, NavLink} from "react-router-dom"
+import { useEffect } from "react";
+import axios from "axios"
 function App() {
+  const [logout, login] = useActionCreators(clearUser, setUser)
+
+  useEffect(async () =>{
+    try{
+    const json = await axios.get("/users/authenticate")
+    if(json.data.success){
+      login(json.data.data.username)
+    }
+  }
+  catch(err){}
+  })
   return (
+    
     <Provider store = {store}>
       <BrowserRouter>
         <main>

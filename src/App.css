@@ -8,10 +8,11 @@ nav{
   justify-content: left;
   height: 25px;
   line-height: 25px;
+  width:50%;
 }
 
 .link{
-  width: 15%;
+  flex-basis: calc(25% - 4px);
   text-align: center;
   border: 2px solid black;
   background: navy;

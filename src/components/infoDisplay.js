@@ -2,6 +2,7 @@ import {React} from "react"
 import "./infoDisplay.css"
 import {connect} from "react-redux";
 import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
+import axios from "axios"
 
 const InfoDisplay = (props) =>
 {
@@ -9,8 +10,8 @@ const InfoDisplay = (props) =>
         <div className = "infoContainer">
             {props.info.image_big.length > 0 ?
             <>
-           
-            <button onClick = {() => {props.addToDeck(props.info)}}>
+            <button onClick = {() => 
+                {}}>
             Add To Deck</button>
             <button onClick = {() => {props.removeFromDeck(props.info)}}>
             Remove From Deck</button>
@@ -59,7 +60,9 @@ function mapStateToProps(state){
         cardId: state.deck.id,
         search: state.search,
         mainDeck: state.deck.mainDeck,
-        extraDeck: state.deck.extraDeck
+        extraDeck: state.deck.extraDeck,
+        username: state.user.username,
+        userId: state.user.id
     }
 }
 

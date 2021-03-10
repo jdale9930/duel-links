@@ -7,23 +7,28 @@ const Login = () =>{
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
-    function signup(data){
-        
+    async function signup(data){
         try{
-            fetch(`/users/signup`, {
+            const response = await fetch(`/users/signup`, {
                 method: `POST`,
-                //mode: "no-cors",
                 headers: {
                     "Content-Type":"application/json"},
                 body: JSON.stringify({
-                    username: "username",
-                    password: "password"
+                    username: data.username,
+                    password: data.password
                 })
             })
-            .then((res) => console.log(res))
+            const json = await response.json();
+            if(json.error){
+                setError(json.error)
+            }
+            else{
+                setCurrentUser(json.data.username)
+                setCurrentId(json.data.id)
+            }
         }
          catch(evt){
-             setError("Something went wrong!")
+             setError("Something went wrong! Please try again later!")
              console.log(error)
          }
     }
@@ -37,10 +42,10 @@ const Login = () =>{
             onChange = {(evt) =>{setPassword(evt.target.value)}}
             ></input>
             <button
-            onClick = {(evt) => signup()}
+            onClick = {(evt) => signup({username, password})}
             >Login</button>
             <button>Sign up</button>
-            
+            <div>{error}</div>
         </div>
     )
 }
