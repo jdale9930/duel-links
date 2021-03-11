@@ -2,6 +2,7 @@ import {React, useState} from "react"
 import {connect} from "react-redux"
 import {setCurrentUser, setCurrentId} from "../Redux/Actions";
 import {useHistory} from "react-router-dom"
+import "./login.css"
 //import axios from "axios"
 const Login = (props) =>{
     const [username, setUsername] = useState("")
@@ -72,11 +73,12 @@ const Login = (props) =>{
     }
 
     return(
-        <div>
-            <input type = "text" value = {username} placeholder = "Username"
+        <div className = "loginContainer">
+            <p style={{textAlign: "center"}} >Login or signup to be able to make your own Yu-Gi-Oh Duel Links decks!</p>
+            <input className = "inputLogin" type = "text" value = {username} placeholder = "Username"
             onChange = {(evt) =>{setUsername(evt.target.value)}}
             ></input>
-             <input type = "text" value = {password} placeholder = "Password"
+             <input className = "inputLogin" type = "text" value = {password} placeholder = "Password"
             onChange = {(evt) =>{setPassword(evt.target.value)}}
             ></input>
             <button
@@ -85,9 +87,9 @@ const Login = (props) =>{
             <button
             onClick = {(evt) => login({username, password})}
             >Login</button>
-            <div>{error}</div>
+            <div style={{textAlign: "center", marginTop: "10px"}}>{error}</div>
             
-            <h1>Hello, {props.username}</h1>
+            {/* <h1>Hello, {props.username}</h1> */}
         </div>
     )
 }

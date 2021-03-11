@@ -1,0 +1,21 @@
+.loginContainer{
+    display: flex;
+    flex-flow: column wrap;
+    margin: auto;
+    margin-top: 30px;
+    width: 500px;
+    background-color: rgba(107, 107, 219, 0.541);
+    padding: 6px;
+    padding-bottom: 20px;
+    box-shadow: inset 0px 0px 5px rgb(115, 124, 124),
+                5px 5px 3px navy;
+    justify-content: center;
+
+}
+
+.inputLogin
+{
+    width: 250px;
+    margin: auto;
+    margin-bottom: 5px;
+}

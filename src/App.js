@@ -49,7 +49,7 @@ function App() {
           <div className = "siteTitle">Duel Links Deck Builder</div>
         <nav>
           {username.length === 0 && 
-          <NavLink className = "link" activeClassName = "activeLink" to ="/login">Login</NavLink> }
+          <NavLink className = "link" activeClassName = "activeLink" to ="/login">Login</NavLink>} 
           {username.length > 0 &&
           <NavLink className = "link" activeClassName = "activeLink" to ="/deckBuilder">Deck Builder</NavLink>}
           {username.length > 0 &&
@@ -61,10 +61,10 @@ function App() {
 
         </nav>
           <Switch>
-          <ProtectedRoute isAuth = {isAuth} authRequired = {false} path = "/login" component = {Login}></ProtectedRoute>
+          <Route path = "/login" component = {Login}></Route>
           <ProtectedRoute isAuth = {isAuth} authRequired = {true} path = "/deckBuilder" component = {DeckBuilder}></ProtectedRoute>
           <ProtectedRoute isAuth = {isAuth} authRequired = {true} path = "/DuelSim" component = {DuelSim}></ProtectedRoute>
-          <ProtectedRoute isAuth = {isAuth} authReauired = {true} path = "/deck" component = {Deck}></ProtectedRoute>
+          <ProtectedRoute isAuth = {isAuth} authRequired = {true} path = "/deck" component = {Deck}></ProtectedRoute>
           <Route path = "*">
             <Redirect to ="/login"/>
           </Route>
