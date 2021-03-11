@@ -78,6 +78,7 @@ const DeckBuilder = (props) => {
 
     return(
         <div>
+            <div className = "deckBuilderTop">
             <div className = "searchBox">
             <div className = "columnBox">
             <input placeholder = "Card Name..."type = "text" value = {props.search}
@@ -240,7 +241,19 @@ const DeckBuilder = (props) => {
             >Clear Search</button>
             </div>
             </div>
-            <select></select> 
+                <div className = "deckBox">
+                    <div className = "usernameDisplay">{props.username}</div>
+                    <div className = "deckBoxRow">
+                        <select style = {{width: "150px"}}></select>
+                        <div style = {{margin: "auto"}}>Current Deck</div>
+                    </div>
+                    <div className = "deckBoxRow">
+                        <input type = "text"></input>
+                        <button className = "newDeckButton">Create New Deck</button>
+                        <div>{error}</div>
+                    </div>
+                </div>
+            </div>
 
             <div className = "searchContainer">
             {error.length > 0 && <h1>{error}</h1>}
@@ -277,6 +290,8 @@ function mapStateToProps(state){
         card: state.deck.card,
         cardId: state.deck.id,
         search: state.search,
+        username: state.user.name,
+        userId: state.user.id
     }
 }
 
