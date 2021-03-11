@@ -244,7 +244,9 @@ const DeckBuilder = (props) => {
                 <div className = "deckBox">
                     <div className = "usernameDisplay">{props.username}</div>
                     <div className = "deckBoxRow">
-                        <select style = {{width: "150px"}}></select>
+                        <select style = {{width: "150px"}} value = {props.deck}
+                        onChange = {(evt)=>{props.setCurrentDeck(evt.target.value)}}
+                        ></select>
                         <div style = {{margin: "auto"}}>Current Deck</div>
                     </div>
                     <div className = "deckBoxRow">
@@ -298,6 +300,7 @@ function mapStateToProps(state){
 const mapDispatchToProps ={
     addToDeck,
     removeFromDeck,
+    setCurrentDeck,
     setSearch,
     clearSearch,
 }
