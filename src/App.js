@@ -17,7 +17,7 @@ function App() {
   const history = useHistory;
   const [clearUserFromState, setUserInState] = useActionCreators(clearUser, setCurrentUser)
   const [username, user] = useSelectors(usernameSelector, userSelector);
-  const [loggedIn, setLoggedIn] = useState(false)
+
   
   const isAuth = useMemo(() => {
     return username.length > 0;
@@ -26,14 +26,20 @@ function App() {
     try{
     const json = await axios.get("/users/authenticate")
     if(json.data.success){
-      setLoggedIn(true)
       setUserInState(json.data.data.username)
     }
   }
   catch(err){}
   }, [])
-  function logout(){
+  async function logout(){
+    try{
+    const {data} = await axios("/users/logout")
     clearUserFromState();
+    }
+    catch(err)
+    {
+      console.log("Well that shouldn' have happened")
+    }
   }
   return (
     
@@ -42,8 +48,8 @@ function App() {
         <main>
           <div className = "siteTitle">Duel Links Deck Builder</div>
         <nav>
-          {/* {username.length === 0 && 
-          <NavLink className = "link" activeClassName = "activeLink" to ="/login">Login</NavLink> } */}
+          {username.length === 0 && 
+          <NavLink className = "link" activeClassName = "activeLink" to ="/login">Login</NavLink> }
           {username.length > 0 &&
           <NavLink className = "link" activeClassName = "activeLink" to ="/deckBuilder">Deck Builder</NavLink>}
           {username.length > 0 &&
@@ -55,10 +61,10 @@ function App() {
 
         </nav>
           <Switch>
-          <Route path = "/login" component = {Login}></Route>
-          <Route path = "/deckBuilder" component = {DeckBuilder}></Route>
-          <Route path = "/DuelSim" component = {DuelSim}></Route>
-          <Route path = "/deck" component = {Deck}></Route>
+          <ProtectedRoute isAuth = {isAuth} authRequired = {false} path = "/login" component = {Login}></ProtectedRoute>
+          <ProtectedRoute isAuth = {isAuth} authRequired = {true} path = "/deckBuilder" component = {DeckBuilder}></ProtectedRoute>
+          <ProtectedRoute isAuth = {isAuth} authRequired = {true} path = "/DuelSim" component = {DuelSim}></ProtectedRoute>
+          <ProtectedRoute isAuth = {isAuth} authReauired = {true} path = "/deck" component = {Deck}></ProtectedRoute>
           <Route path = "*">
             <Redirect to ="/login"/>
           </Route>
