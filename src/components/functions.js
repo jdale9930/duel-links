@@ -1,6 +1,6 @@
 import axios from "axios"
 
-async function addToDeck(cardName, deckId){
+export async function addToDeck(cardName, deckId){
     try{
         let response = await axios.post("/cards/add",
         {
@@ -13,7 +13,7 @@ async function addToDeck(cardName, deckId){
     {}
 }
 
-async function removeFromDeck(cardId){
+export async function removeFromDeck(cardId){
     try{
         let response = await axios.delete(`/cards/remove/${cardId}`)
     }
@@ -21,7 +21,7 @@ async function removeFromDeck(cardId){
     {}
 }
 
-async function clearDeck(deckId){
+export async function clearDeck(deckId){
     try{
         let response = await axios.post("/cards/clearDeck",
         {
@@ -33,7 +33,7 @@ async function clearDeck(deckId){
     {}
 }
 
-async function getCardsInDeck(deckId){
+export async function getCardsInDeck(deckId){
     try{
         let response = await axios(`/cards/byDeckID/${deckId}`)
         return response
@@ -42,7 +42,7 @@ async function getCardsInDeck(deckId){
     {}
 }
 
-async function getUserDecks(userId){
+export async function getUserDecks(userId){
     try{
         let response = await axios(`/decks/byUserID/${userId}`)
         return response
@@ -51,20 +51,21 @@ async function getUserDecks(userId){
     {}
 }
 
-async function addDeck(deckName, userId){
+export async function addDeck(name, user_id){
+    console.log(name, user_id)
     try{
-        let response = await axios.post(`/decks/add`,
+        await axios.post(`/decks/add`,
         {
-            name: deckName,
-            user_id: userId
+            name: name,
+            user_id: user_id
         })
-        return response
+        
     }
     catch(err)
     {}
 }
 
-async function deleteDeck(deckId){
+export async function deleteDeck(deckId){
     try{
         let response = await axios.delete(`/decks/delete/${deckId}`)
         return response
@@ -73,8 +74,8 @@ async function deleteDeck(deckId){
     {}
 }
 
-async function userLogout(){
+export async function userLogout(){
     
 }
 
-module.exports = {addToDeck, removeFromDeck, getCardsInDeck, getUserDecks, }
+export default "*"

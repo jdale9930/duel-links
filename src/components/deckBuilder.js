@@ -1,10 +1,11 @@
 import {React, useState} from "react";
 import {connect} from "react-redux";
-import {addToDeck, removeFromDeck, setSearch, clearSearch} from "../Redux/Actions";
+import {addToDeck, removeFromDeck, setSearch, clearSearch, setCurrentDeck} from "../Redux/Actions";
 import CardDisplay from "./cardDisplay"
 import "./deckBuilder.css"
 import InfoDisplay from "./infoDisplay"
-
+import axios from "axios"
+import {getUserDecks, addDeck} from "./functions"
 const DeckBuilder = (props) => {
 
     const [cardSearch, setCardSearch] = useState([])
@@ -14,6 +15,7 @@ const DeckBuilder = (props) => {
     const [race, setRace] = useState("")
     const [type, setType] = useState("")
     const [mst, setMst] = useState("")
+    const [newDeck, setNewDeck] = useState("")
     const [cardInfo, setCardInfo] = useState({
         id: "", 
         name: "", 
@@ -246,12 +248,29 @@ const DeckBuilder = (props) => {
                     <div className = "deckBoxRow">
                         <select style = {{width: "150px"}} value = {props.deck}
                         onChange = {(evt)=>{props.setCurrentDeck(evt.target.value)}}
-                        ></select>
+                        >
+                            
+                            {props.deck.length > 0 && (() => {
+                                let userDecks = getUserDecks(props.userId)
+                                userDecks.map((v) =>{
+                                    <option value= {v.name}>{v.name}</option>
+                                })
+                            })
+                            }
+
+                        </select>
                         <div style = {{margin: "auto"}}>Current Deck</div>
                     </div>
                     <div className = "deckBoxRow">
-                        <input type = "text"></input>
-                        <button className = "newDeckButton">Create New Deck</button>
+                        <input type = "text" value = {newDeck} placeholder = "New Deck Name"
+                        onChange = {(evt)=>{setNewDeck(evt.target.value)}}></input>
+                        <button className = "newDeckButton"
+                        onClick = {(evt) =>{addDeck(newDeck, props.userId)}}
+                        >Create New Deck</button>
+                        <button className = "newDeckButton"
+                        onClick = {(evt) =>{let test = getUserDecks(props.userId) 
+                            console.log(test)}}
+                        >test</button>
                         <div>{error}</div>
                     </div>
                 </div>
